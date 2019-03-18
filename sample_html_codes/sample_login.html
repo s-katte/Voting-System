@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Login</title>
+     <!-- Bootstrap CSS CDN -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+     <!-- Our Custom CSS -->
+ 
+     <!-- Font Awesome JS -->
+     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+ 
+     <!-- jQuery CDN - Slim version (=without AJAX) -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <!-- Popper.JS -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+     <!-- Bootstrap JS -->
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+     <style>
+        header.masthead{
+            text-align: center;
+            color: black;
+            background-image: url('Images/material-design-background-2.jpg');
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-position: center;
+            background-size: cover;
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+ 
+</head>
+
+<body>
+    <header class="masthead">
+    <div class="container-fluid ">
+        <div class="page-header m-5 text-center">
+            <img src="Images/MIT_logo.png">
+        </div>
+        <hr class="col-8">
+        <div class="container-fluid border-rounded d-flex flex-row justify-content-center align-items-center my-5">
+            <div class="card-deck col-10">
+                <div class="card shadow-md text-center">
+                    <img class="card-img" src="Images/sign_in.png" style="height: 100%; width: 100%">
+                    <div class="card-body">
+                        <h5 class="card-title">Sign in</h5>
+                        <form action="login.php" method="POST">
+                            <div class="form-group col-10 m-1 mx-auto">
+                                <input type="text" name="uname"class="form-control" placeholder="Username" value="" />
+                            </div>
+                            <div class="form-group col-10 m-3 mx-auto">
+                                <input type="password" name= "psd" class="form-control" placeholder="Password" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Login" />
+                            </div>
+                            <div class="form-group">
+                                <a href="#" class="ForgetPwd">Forget Password?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card shadow-md text-center">
+                    <img class="card-img" src="Images/sign_up.jpg" style="height: 56%; width: 100%">
+                    <div class="card-body">
+                        <h5 class="card-title">Sign up</h5>
+                        <form action="sign_up.php" method="POST">
+                            <div class="form-inline col-10 m-1 mx-auto justify-content-around">
+                                <input type="text" class="form-control " name="fname" placeholder="First name*" value="" />
+                                <input type="text" class="form-control " name="lname" placeholder="Last name*" value="" />
+                            </div>
+                            <div class="form-inline col-10 m-3 mx-auto justify-content-around">
+                                <input type="text" class="form-control " name="uname" placeholder="Username*" value="" />
+                                <input type="number" class="form-control " name="prn" placeholder="PRN*" value="" />
+                            </div>
+                            <div class="form-inline col-10 m-3 mx-auto justify-content-around">
+                                <input type="password*" class="form-control " name="psd" placeholder="password" value="" />
+                                <input type="password*" class="form-control " name="cpsd" placeholder="Confirm password*" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success" value="Sign up" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>
+</body>
+
+</html>
+
