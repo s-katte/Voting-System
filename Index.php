@@ -28,7 +28,7 @@
 }
 
 
-
+/*This testog comment for change */+
 
 .btn-group button:after {
   content: "";
@@ -65,7 +65,7 @@ style="position: relative;
 <div class="btn-group">
   <button>I AM A VIEWER</button>
   <button>I AM A CONTESTANT</button>
-  <button>I AM AN ADMIN</button>
+  <button href = "Ädmin/">I AM AN ADMIN</button>
 </div>
 
 
