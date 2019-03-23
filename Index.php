@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+<?php
+
+
+
+?>
+
+<!DOCTYPE html>
 <html>
 
 <body>
@@ -65,7 +71,8 @@ style="position: relative;
 <div class="btn-group">
   <button>I AM A VIEWER</button>
   <button>I AM A CONTESTANT</button>
-  <button href = "Ädmin/">I AM AN ADMIN</button>
+  <a href = "Admin/login.php" class = "btn btn-dark text-black"> I AM AN ADMIN </a>
+  
 </div>
 
 
