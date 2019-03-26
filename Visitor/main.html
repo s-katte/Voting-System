@@ -1,35 +1,27 @@
 <!DOCTYPE html>
-<html>
-<head></head>
-<style>
-.column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-}
-
-/* Clear floats after image containers */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-</style>
-
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
 <body>
-    <h2 style="text-align:center">Vote for your favourtite contestent</h2>
-<form action="sallu.html" method="get">
-<button type="submit">  <img src="salk.jpg"  style="width:128px;height:128px;" title="SalmanKhan" ></button>
-</form>
-<form action="sallu.html" method="get">
-<button><img src="jaques.jpg"  style="width:128px;height:128px;" title="JaquelineFernandez"></button>
-</form>
-<form action="sallu.html" method="get">
-<button><img src="hritik.jfif"  style="width:128px;height:128px;" title="HritikRoshan"></button>
-</form>
-<form action="sallu.html" method="get">
-<button><img src="dishap.jpg"  style="width:128px;height:128px;" title="DishaPatani"></button>
-</form>
-
-</body>
-</html>
+ 
+<div class="container">
+  <h2>Card Image</h2>
+  <p>Image at the top (card-img-top):</p>
+  <div class="card" style="width:400px">
+    <img class="card-img-top" src="../Images/salk.jpg" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <h4 class="card-title">Name</h4>
+      <p class="card-text">description about the contestent.</p>
+      <a href="sallu.html" class="btn btn-primary">See Profile</a>
+      
+    </div>
+  </div>
+  <br>
+  
