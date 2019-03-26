@@ -1,0 +1,64 @@
+<!doctype HTML>
+<html lang="en">
+
+    <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="details_style.css">
+      <title>
+        Voting System-Registration for contest 
+      </title>
+      <meta name="description" content="Contestant edit profile">
+        
+    </head>
+    <body>
+      
+     
+      <div class="head">
+        <h1>
+          <img src="edit_profile_icon.png" alt="edit profile icon">
+          Add your Profile
+        </h1>
+
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class ="conatainer">
+
+        <form action ="view_profile.html" >
+           
+            Name
+            <input type="text" name="name" title="name" placeholder="Full name" size="25" required >
+            <br>
+            <br>
+            Gender
+            <input type="radio" name="gender" value="male" > Male
+            
+            <input type="radio" name="gender" value="female"> Female
+            
+            <input type="radio" name="gender" value="other"> Other
+            <br>
+            <br>
+            Birthday :
+            <input type="date" name="bday" min = "1950-01-01" max = "2019-01-01" required>
+            <br>
+            <br>
+            Select image to upload:
+            <input type="file" name="pic" accept="image/*">
+            <br>  
+            <br>
+            Bio:
+            <br>
+            <textarea  name ="bio" placeholder="Add your bio">
+             
+            </textarea>
+            <br>
+            <br>
+            <br>    
+            <input type="submit"  value="Submit">
+             
+        </form>
+      </div>
+      
+    </body>
+</html>
