@@ -24,7 +24,7 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <meta charset="utf-8">
-        <title>Star Rating</title>
+
         <meta name="viewport" content="initial-scale=1,width=device-width">
         <link rel="stylesheet" href="StarRating.css">
         <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -33,7 +33,13 @@
 
 
 <body>
+ <div id="content">
 
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a href="#" class="btn btn-primary">logout</a>
+            </nav>
+
+<div class="container-fluid border rounded">
 <div class="container">
 
   <div class="card" style="width:600px">
@@ -41,15 +47,18 @@
     <div class="card-body">
       <h4 class="card-title">Contestant name</h4>
       <p class="card-text">Description about contestent</p>
-      <a href="#" class="btn btn-primary">Vote</a><br>
+      
       <x-star-rating value="0" number="10"></x-star-rating>
         <script src="StarRating.js"></script>
-        <hr>
             <div class="form-group">
-              <label for="comment">Comment:</label>
-              <textarea class="form-control" rows="5" id="comment"></textarea>
+              <textarea class="form-control" rows="2" id="comment" placeholder="add your comment here.."></textarea>
             </div>
       <a href="#" class="btn btn-primary" margin-right:100px;>Comment</a><br>
+      <hr>
+      <label class="card-text">user1: some comment</label><br>
+      <label class="card-text">user2: some comment</label><br>
+      <label class="card-text">user3: some comment</label><br>
+      
     </div>
   </div>
 </div>

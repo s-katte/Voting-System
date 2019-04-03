@@ -1,25 +1,18 @@
-<?php
-
-
-
-?>
-
 <!DOCTYPE html>
 <html>
 
-<body>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Contestent List</title>
+    <title>Contestent Profile</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="Home_1.css">
-
+    <link rel="stylesheet" href="home.css">
+    
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -30,81 +23,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<meta charset="utf-8">
+
+        <meta name="viewport" content="initial-scale=1,width=device-width">
+        <link rel="stylesheet" href="StarRating.css">
+        <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
 </head>
-<style>
-.btn-group button {
-  position: relative;
-  background-color: #F0F8FF;
-  border-radius: 50%;
-  font-size: 28px;
-  margin:auto;
-  color: #000000;
-  padding: 20px;
-  width: 400px;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  display: block
-  
-}
-
-.btn-group button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
-}
 
 
-/*This testog comment for change */+
+<body>
+ <div id="content">
 
-.btn-group button:after {
-  content: "";
-  background: #f1f1f1;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px !important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0.8s
-}
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a href="#" class="btn btn-primary">logout</a>
+            </nav>
 
-.btn-group button:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
+<div class="container-fluid border rounded">
+<div class="container">
 
-</style>
-
-<img src="https://www.worthofread.com/wp-content/uploads/2017/01/who-are-you.jpg" alt="Who you are?" 
-width="500" height="200"
-
-style="position: relative;
-  display: block;
-  border-radius: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 1;"
->
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div  class="text-center">
-    
-      <a href="Visitor/index.php" class="col-6 btn-lg btn btn-primary ">I am a Visitor</a></br></br></br>
-    
-  <a href="Contestent/add_profile.php" class="col-6 btn-lg btn btn-primary ">I am a Contestant</a></br></br></br>
-  <a href="Admin/" class="col-6 btn-lg btn btn-primary ">I am a Admin</a></br></br></br>
+  <div class="card" style="width:600px">
+    <img class="card-img-top" src="../Images/profile.jpeg" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <h4 class="card-title">Contestant name</h4>
+      <p class="card-text">Description about contestent</p>
+      <x-star-rating value="0" number="10"></x-star-rating>
+        <script src="StarRating.js"></script>
+            
+      <hr>
+      <label class="card-text">user1: some comment</label><br>
+      <label class="card-text">user2: some comment</label><br>
+      <label class="card-text">user3: some comment</label><br>
+      
+    </div>
+  </div>
 </div>
 
-
-
 </body>
-</html>
