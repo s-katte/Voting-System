@@ -94,7 +94,7 @@ span.psw {
 
 <div class="container-fluid border-rounded d-flex flex-row justify-content-center align-items-center my-5">
 
-<form action="/action_page.php">
+<form action="login.php"method="POST">
 <h2 text-align="right">Login Form</h2>
   <div class="imgcontainer">
     <img src="../Images/login.jpg" alt="Avatar" class="avatar">
@@ -105,58 +105,42 @@ span.psw {
     <input type="text" placeholder="Enter Username" name="uname" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="psd" required>
         
     <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
-  </div>
 
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
 </form>
 </div>
 
-<div class="container-fluid border-rounded d-flex flex-row justify-content-center align-items-center my-5">
-<forms action="action_page.php" style="border:1px solid #ccc">
+
+<form action="sign_up.php" method="POST" style="border:1px solid #ccc">
   <div class="container">
     <h1>Sign Up</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
 
     <label for="First"><b>First Name</b></label>
-    <input type="text" placeholder="Enter First Name" name="First" required>
+    <input type="text" placeholder="Enter First Name" name="fname" required>
 
     <label for="last"><b>Last Name</b></label>
-    <input type="text" placeholder="Enter Last Name" name="last" required>
+    <input type="text" placeholder="Enter Last Name" name="lname" required>
 
     <label for="user"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="last" required>
+    <input type="text" placeholder="Enter Username" name="uname" required>
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="psd" required>
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+    <input type="password" placeholder="Repeat Password" name="cpsd" required>
 
-    <label>
-      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-    </label>
-
-    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-
-    <div class="clearfix">
-      <button type="button" class="cancelbtn">Cancel</button>
       <button type="submit" class="signupbtn">Sign Up</button>
     </div>
   </div>
-</forms>
+</form>
 </div>
 
 </body>
@@ -164,4 +148,5 @@ span.psw {
 
 
 HTML;
+//<div class="container-fluid border-rounded d-flex flex-row justify-content-center align-items-center my-5">
 ?>
