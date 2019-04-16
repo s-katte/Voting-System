@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if(sizeof($_SESSION) == 0){
+    header('Location: login.php');
+}
+
+?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,6 +26,9 @@
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 <?php
+
+
+
 echo <<<HTML
 
 <!DOCTYPE html>
@@ -93,36 +103,33 @@ span.psw {
  <div id="content">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a href="#" class="btn btn-primary">logout</a>
+                <a href="logout.php" class="btn btn-primary">logout</a>
             </nav>
 
-<div class="container-fluid border rounded">
+<div class="container-fluid border rounded">    
 <div class="container-fluid border-rounded d-flex flex-row justify-content-center align-items-center my-5">
-<forms action="#" style="border:1px solid #ccc">
+<form action="add_contestent.php" method="POST" style="border:1px solid #ccc">
   <div class="container">
     <h1>Build Profile</h1>
     <p>Please fill in this form to create create your profile.</p>
     <hr>
 
     <label for="First"><b>First Name</b></label>
-    <input type="text" placeholder="Enter First Name" name="First" required>
+    <input type="text" placeholder="Enter First Name" name="fname" required>
 
     <label for="last"><b>Last Name</b></label>
-    <input type="text" placeholder="Enter Last Name" name="last" required>
-
-    <label for="user"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="last" required>
+    <input type="text" placeholder="Enter Last Name" name="lname" required>
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>
     
     <label for="bio"><b>About yourself</b></label>
-    <input type="text" placeholder="Write something nice.." name="email" required>
+    <input type="text" placeholder="Write something nice.." name="about" required>
     
       <button type="submit" class="signupbtn">Add It</button>
     </div>
   </div>
-</forms>
+</form>
 </div>
 
 </body>

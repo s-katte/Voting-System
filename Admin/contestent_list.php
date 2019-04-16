@@ -1,13 +1,12 @@
-<?php
+<?php 
+session_start();
 
-
-
+if(sizeof($_SESSION) == 0){
+   header('Location: index.php');
+}
 ?>
-
 <!DOCTYPE html>
-<html>
-
-<body>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,80 +30,49 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 </head>
-<style>
-.btn-group button {
-  position: relative;
-  background-color: #F0F8FF;
-  border-radius: 50%;
-  font-size: 28px;
-  margin:auto;
-  color: #000000;
-  padding: 20px;
-  width: 400px;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  display: block
-  
-}
+<body>
+ <div id="content">
 
-.btn-group button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
-}
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a href="logout.php" class="btn btn-primary">logout</a>
+            </nav>
 
+<div class="container-fluid border rounded">
+    <div class="row text-center p-5 justify-content-around">
 
-/*This testog comment for change */+
+    <?php 
 
-.btn-group button:after {
-  content: "";
-  background: #f1f1f1;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px !important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0.8s
-}
+    $dbname = 'Voting_system';
+    $c_user = 'sign_up';
+    $conn = new MongoDB\Driver\Manager('mongodb://localhost:27017');
+    $filter = ['by' => $_SESSION['user'], 'added' => 1];
+    $query = new MongoDB\Driver\Query($filter, []);
+    $cursor = $conn->executeQuery("$dbname.$c_user", $query);
+    $count = 0;
+    foreach($cursor as $c){
+        
+        echo '
+        <div class="col-sm-4">
+            <div class="card shadow-lg">
+                <img class="card-img-top img-fluid" src="../Images/profile.jpeg" style="width: 100em; height: 20em;">
+                <div class="card-body">
+                    <h5 class="card-title">'.$c->fname.' '.$c->lname.'</h5>
+                    <p class="card-text">'.$c->about.'</p>
+                    <hr>
+                    <p class="card-text text-danger">___no of votes</p><br>
+                    <a href="contestent_profile.php" class="btn btn-primary">View Profile</a>
+                </div>
+            </div>
+        </div>';
+        $count += 1;
+    }
 
-.btn-group button:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
+    if($count == 0){
+        echo'<h1>No contestent has yet submitted the details!!</h1>';
+    }
 
-</style>
-
-<img src="https://www.worthofread.com/wp-content/uploads/2017/01/who-are-you.jpg" alt="Who you are?" 
-width="500" height="200"
-
-style="position: relative;
-  display: block;
-  border-radius: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 1;"
->
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div  class="text-center">
-    
-  <a href="Visitor/index.php" class="col-6 btn-lg btn btn-primary ">I am a Visitor</a></br></br></br>
-    
-  <a href="Contestent/login.php" class="col-6 btn-lg btn btn-primary ">I am a Contestant</a></br></br></br>
-  <a href="Admin/" class="col-6 btn-lg btn btn-primary ">I am a Admin</a></br></br></br>
+    ?>
+    </div> 
 </div>
-
-
-
 </body>
-</html>
+</html>  

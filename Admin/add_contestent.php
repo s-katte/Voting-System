@@ -1,5 +1,10 @@
-<?php
+<?php 
 session_start();
+
+if(sizeof($_SESSION) == 0){
+   header('Location: index.php');
+}
+
 ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,19 +39,16 @@ session_start();
                         $("#uname_response").show();
 
                         $.ajax({
-                            url: 'ad_uname_check.php',
+                            url: 'uname_check.php',
                             type: 'post',
                             data: {uname:uname},
                             success: function(response){
-                                
+                                console.log(response);
                                 // Show status
                                 if(response > 0){
                                     $("#uname_response").className += "row";
                                     $("#uname_response").html("<span class='not-exists'>* Username Already in use.</span>");
 
-                                }else{
-                                  $("#uname_response").className += "row";
-                                    $("#uname_response").html("<span class='exists'>Available.</span>");
                                 }
 
                             }
@@ -59,44 +61,9 @@ session_start();
 
             });
         </script>
-        <script>
-            $(document).ready(function(){
-
-                $("#uname").keyup(function(){
-
-                    var uname = $("#uname").val().trim();
-
-                    if(uname != ''){
-
-                        $("#uname_response1").show();
-
-                        $.ajax({
-                            url: 'log_uname_check.php',
-                            type: 'post',
-                            data: {uname:uname},
-                            success: function(response){
-                                console.log(response);    
-                                // Show status
-                                if(response > 0){
-                                  $("#uname_response1").className += "row";
-                                    $("#uname_response1").html("<span class='not-exists'> </span>");
-
-                                }else{
-                                  $("#uname_response1").className += "row";
-                                    $("#uname_response1").html("<span class='not-exists'>User not registered.</span>");
-                                }
-
-                            }
-                        });
-                    }else{
-                        $("#uname_response1").hide();
-                    }
-
-                });
-
-            });
-        </script>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a href="logout.php" class="btn btn-primary">logout</a>
+</nav>
 <?php
 echo <<<HTML
 
@@ -173,58 +140,25 @@ span.psw {
 
 <div class="container-fluid border-rounded d-flex flex-row justify-content-center align-items-center my-5">
 
-<form action="log_in.php" method="POST">
-<h2 text-align="right">Login Form</h2>
+<form action="add_cont_db.php" method="POST">
+<h2 text-align="right">Add Contestent</h2>
   <div class="imgcontainer">
     <img src="../Images/login.jpg" alt="Avatar" class="avatar">
   </div>
 
   <div class="container">
     <label for="uname"><b>Username</b></label>
-    <input type="text" class="form-control" id="uname" name="uname" placeholder="Username*" value="" required />
-    <div id="uname_response1" class="response"></div>
-
+    <input type="text" class="form-control" id="txt_uname" name="txt_uname" placeholder="Username*" value="" required />
+    <div id="uname_response" class="response"></div>
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psd" required>
         
-    <button type="submit">Login</button>
- 
+    <button type="submit">Add</button>
+
+  </div>  
 </form>
 </div>
 
-<div class="container-fluid border-rounded d-flex flex-row justify-content-center align-items-center my-5">
-<form action="signup.php" method="POST" style="border:1px solid #ccc">
-  <div class="container">
-    <h1>Sign Up</h1>
-    <p>Please fill in this form to create an account.</p>
-    <hr>
-
-    <label for="First"><b>First Name</b></label>
-    <input type="text" placeholder="Enter First Name" name="fname" required>
-
-    <label for="last"><b>Last Name</b></label>
-    <input type="text" placeholder="Enter Last Name" name="lname" required>
-
-    <label for="user"><b>Username</b></label>
-<label for="uname"><b>Username</b></label>
-    <input type="text" class="form-control" id="txt_uname" name="txt_uname" placeholder="Username*" value="" required />
-    <div id="uname_response" class="response"></div>
-
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psd" required>
-
-    <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="cpsd" required>
-
-    <div class="clearfix">  
-      <button type="submit" class="signupbtn">Sign Up</button>
-    </div>
-  </div>
-</form>
-</div>
 
 </body>
 </html>

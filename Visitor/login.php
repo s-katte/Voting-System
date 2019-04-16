@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             elseif($hashedpwd == true){
             $_SESSION['user'] = $uname;
             
-	        header("Location: index.php?user=".$uname);}
+	        header("Location: contestent_list.php");}
     
 }}
 

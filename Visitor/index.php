@@ -17,6 +17,82 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
      <!-- Bootstrap JS -->
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script src="jquery-3.1.1.min.js" type="text/javascript"></script>
+    <link href="style.css" rel="stylesheet" type="text/css">
+        <script>
+            $(document).ready(function(){
+
+                $("#txt_uname").keyup(function(){
+
+                    var uname = $("#txt_uname").val().trim();
+
+                    if(uname != ''){
+
+                        $("#uname_response").show();
+
+                        $.ajax({
+                            url: 'uname_check.php',
+                            type: 'post',
+                            data: {uname:uname},
+                            success: function(response){
+                                
+                                // Show status
+                                if(response > 0){
+                                    $("#uname_response").className += "row";
+                                    $("#uname_response").html("<span class='not-exists'>* Username Already in use.</span>");
+
+                                }else{
+                                  $("#uname_response").className += "row";
+                                    $("#uname_response").html("<span class='exists'>Available.</span>");
+                                }
+
+                            }
+                        });
+                    }else{
+                        $("#uname_response").hide();
+                    }
+
+                });
+
+            });
+        </script>
+        <script>
+            $(document).ready(function(){
+
+                $("#uname").keyup(function(){
+
+                    var uname = $("#uname").val().trim();
+
+                    if(uname != ''){
+
+                        $("#uname_response1").show();
+
+                        $.ajax({
+                            url: 'log_uname_check.php',
+                            type: 'post',
+                            data: {uname:uname},
+                            success: function(response){
+                                console.log(response);    
+                                // Show status
+                                if(response > 0){
+                                  $("#uname_response1").className += "row";
+                                    $("#uname_response1").html("<span class='not-exists'></span>");
+
+                                }else{
+                                  $("#uname_response1").className += "row";
+                                    $("#uname_response1").html("<span class='exists'>User not registered.</span>");
+                                }
+
+                            }
+                        });
+                    }else{
+                        $("#uname_response1").hide();
+                    }
+
+                });
+
+            });
+        </script>
 
 <?php
 echo <<<HTML
@@ -102,7 +178,9 @@ span.psw {
 
   <div class="container">
     <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <input type="text" class="form-control" id="uname" name="uname" placeholder="Username*" value="" required />
+    <div id="uname_response1" class="response"></div>
+
 
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psd" required>
@@ -123,10 +201,12 @@ span.psw {
     <input type="text" placeholder="Enter First Name" name="fname" required>
 
     <label for="last"><b>Last Name</b></label>
-    <input type="text" placeholder="Enter Last Name" name="lname" required>
+    <input type="text"  placeholder="Enter Last Name" name="lname" required>
 
     <label for="user"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+<label for="uname"><b>Username</b></label>
+    <input type="text" class="form-control" id="txt_uname" name="txt_uname" placeholder="Username*" value="" required />
+    <div id="uname_response" class="response"></div>
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>

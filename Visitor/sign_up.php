@@ -9,7 +9,7 @@ $c_user = 'sign_up';
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $fname = test_input($_POST["fname"]);
     $lname = test_input($_POST["lname"]);
-    $uname = test_input($_POST["uname"]);
+    $uname = test_input($_POST["txt_uname"]);
     $email = test_input($_POST["email"]);
     $psd = test_input($_POST["psd"]);
     $cpsd =  test_input($_POST["cpsd"]);
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 $hashed_cpsd = password_hash($cpsd, PASSWORD_DEFAULT);
                 //Insert data in DB
                 $user = array(
-                'type' => 'visitor'
+                'type' => 'visitor',
                 'fname' => $fname,
                 'lname' => $lname,
                 'uname' => $uname,

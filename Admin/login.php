@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $dbname = 'Voting_system';
 $c_user = 'sign_up';

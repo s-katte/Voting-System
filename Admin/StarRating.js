@@ -1,5 +1,6 @@
 class StarRating extends HTMLElement {
     get value () {
+        console.log(value);
         return this.getAttribute('value') || 0;
     }
 

@@ -1,3 +1,10 @@
+<?php 
+session_start();
+
+if(sizeof($_SESSION) == 0){
+   header('Location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -36,19 +43,31 @@
  <div id="content">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a href="#" class="btn btn-primary">logout</a>
+                <a href="logout.php" class="btn btn-primary">logout</a>
             </nav>
 
 <div class="container-fluid border rounded">
 <div class="container">
 
+
+<?php 
+    $dbname = 'Voting_system';
+    $c_user = 'sign_up';
+    $conn = new MongoDB\Driver\Manager('mongodb://localhost:27017');
+    $filter = ['by' => $_SESSION['user'], 'added' => 1];
+    $query = new MongoDB\Driver\Query($filter, []);
+    $cursor = $conn->executeQuery("$dbname.$c_user", $query);
+
+foreach($cursor as $c){
+
+  echo'
   <div class="card" style="width:600px">
     <img class="card-img-top" src="../Images/profile.jpeg" alt="Card image" style="width:100%">
     <div class="card-body">
-      <h4 class="card-title">Contestant name</h4>
-      <p class="card-text">Description about contestent</p>
+      <h4 class="card-title">'.$c->fname.' '.$c->lname.'</h4>
+      <p class="card-text">'.$c->about.'</p>
       <x-star-rating value="0" number="10"></x-star-rating>
-        <script src="StarRating.js"></script>
+        <script src="StarRating.js">console.log(value);</script>
             
       <hr>
       <label class="card-text">user1: some comment</label><br>
@@ -56,7 +75,9 @@
       <label class="card-text">user3: some comment</label><br>
       
     </div>
-  </div>
+  </div>';
+}
+?>
 </div>
 
 </body>

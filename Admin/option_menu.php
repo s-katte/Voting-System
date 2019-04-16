@@ -1,13 +1,13 @@
-<?php
+<?php 
+session_start();
 
-
-
+if(sizeof($_SESSION) == 0){echo "true";
+   header('Location: index.php');
+}
 ?>
 
 <!DOCTYPE html>
-<html>
-
-<body>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,80 +31,20 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 </head>
-<style>
-.btn-group button {
-  position: relative;
-  background-color: #F0F8FF;
-  border-radius: 50%;
-  font-size: 28px;
-  margin:auto;
-  color: #000000;
-  padding: 20px;
-  width: 400px;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  display: block
-  
-}
+<body>
+ <div id="content">
 
-.btn-group button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
-}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a href="logout.php" class="btn btn-primary">logout</a>
+</nav>
 
-
-/*This testog comment for change */+
-
-.btn-group button:after {
-  content: "";
-  background: #f1f1f1;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px !important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0.8s
-}
-
-.btn-group button:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-
-</style>
-
-<img src="https://www.worthofread.com/wp-content/uploads/2017/01/who-are-you.jpg" alt="Who you are?" 
-width="500" height="200"
-
-style="position: relative;
-  display: block;
-  border-radius: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 1;"
->
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <div  class="text-center">
     
-  <a href="Visitor/index.php" class="col-6 btn-lg btn btn-primary ">I am a Visitor</a></br></br></br>
+  <a href="add_contestent.php" class="col-6 btn-lg btn btn-primary ">Add a contestent.</a></br></br></br>
     
-  <a href="Contestent/login.php" class="col-6 btn-lg btn btn-primary ">I am a Contestant</a></br></br></br>
-  <a href="Admin/" class="col-6 btn-lg btn btn-primary ">I am a Admin</a></br></br></br>
+  <a href="contestent_list.php" class="col-6 btn-lg btn btn-primary ">see details of contestents </a></br></br></br>
 </div>
 
-
-
+</div>
 </body>
 </html>

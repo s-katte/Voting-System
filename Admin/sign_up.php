@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 print_r($_POST);
 
@@ -42,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 $hashed_cpsd = password_hash($cpsd, PASSWORD_DEFAULT);
                 //Insert data in DB
                 $user = array(
-                'type' => 'admin'
+                'type' => 'admin',
                 'fname' => $fname,
                 'lname' => $lname,
                 'uname' => $uname,
