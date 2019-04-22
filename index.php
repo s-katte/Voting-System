@@ -12,9 +12,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <title>Contestent List</title>
-
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
@@ -31,54 +29,6 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 </head>
-<style>
-.btn-group button {
-  position: relative;
-  background-color: #F0F8FF;
-  border-radius: 50%;
-  font-size: 28px;
-  margin:auto;
-  color: #000000;
-  padding: 20px;
-  width: 400px;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  display: block
-  
-}
-
-.btn-group button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
-}
-
-
-/*This testog comment for change */+
-
-.btn-group button:after {
-  content: "";
-  background: #f1f1f1;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px !important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0.8s
-}
-
-.btn-group button:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-
-</style>
 
 <img src="https://www.worthofread.com/wp-content/uploads/2017/01/who-are-you.jpg" alt="Who you are?" 
 width="500" height="200"
@@ -98,7 +48,7 @@ style="position: relative;
 <br>
 <div  class="text-center">
     
-  <a href="Visitor/index.php" class="col-6 btn-lg btn btn-primary ">I am a Visitor</a></br></br></br>
+  <a data-step="1" data-intro="visitor" href="Visitor/index.php" class="col-6 btn-lg btn btn-primary">I am a Visitor</a></br></br></br>
     
   <a href="Contestent/login.php" class="col-6 btn-lg btn btn-primary ">I am a Contestant</a></br></br></br>
   <a href="Admin/" class="col-6 btn-lg btn btn-primary ">I am a Admin</a></br></br></br>

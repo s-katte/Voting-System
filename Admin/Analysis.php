@@ -54,8 +54,6 @@ if(sizeof($_SESSION) == 0){
         function erase_val(){
             document.getElementById("max_votes").value = "";
             document.getElementById("min_votes").value = "";
-            document.getElementById("max_rates").value = "";
-            document.getElementById("min_rates").value = "";
         }
     </script>
 </head>
@@ -63,8 +61,10 @@ if(sizeof($_SESSION) == 0){
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg justify-content-around navbar-light bg-light">
   <a href="logout.php" class="btn btn-primary">logout</a>
+  <a href="option_menu.php" class="btn btn-primary">Back</a>
+
 </nav>
 <div class="card shadow-lg col-11 mx-auto text-center justify-content-center bg-light m-3">
     <div class="btn btn-lg btn-success col-2 mx-auto m-3" onclick="show_filters()">More filters?</div>
@@ -109,14 +109,6 @@ if(sizeof($_SESSION) == 0){
                                 </div> 
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="row">
-                                <div class="col-2 d-flex flex-row justify-content-center align-items-center">
-                                    <h4 class="display text-primary">By City&#58;</h4>
-                                </div>
-                                <textarea name="city" placeholder="city name"></textarea>
-                            </div>
-                        </div>
                     </div>
                     <hr>
                     <label for="display" id="mess">OR</label>
@@ -152,55 +144,12 @@ if(sizeof($_SESSION) == 0){
             </div>
         </div>
     </div> 
-
-<!--
-#php
-
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    //$test = ['Genre'=>['$all'=>['Action']], 'Rank'=>['$ne'=>5], 'Votes'=>['$gt'=>1500000]];
-    //$test = ["Runtime_in_minutes"=>['$eq'=> 121]];
-    //print_r($test);
-    //echo gettype($test);
-    //echo '<br>';
-
-    $comp_ops = ['Equal to'=>'$eq', 'Not equal to'=>'$ne', 
-                'Greater than'=>'$gt', 'Greater than equal to'=>'$gte', 
-                'Less than'=>'$lt', 'Less than equal to'=>'$lte'];
-
-    if ($_POST['genre'] != 'Any'){
-        $filter['Genre'] = ['$all'=>[$_POST['genre']]];
-    }
-    if ($_POST['actor'] != ''){
-        $filter['Actors'] = ['$regex'=>$_POST['actor']];
-    }
-    if ($_POST['rankvalue'] != ''){
-        $filter['Rank'] = [$comp_ops[$_POST['rankcomp']]=>(int)$_POST['rankvalue']];
-    }
-    if ($_POST['yearvalue'] != ''){
-        $filter['Year'] = [$comp_ops[$_POST['yearcomp']]=>(int)$_POST['yearvalue']];
-    }
-    if ($_POST['runtimevalue'] != ''){
-        $filter['Runtime_in_minutes'] = [$comp_ops[$_POST['runtimecomp']]=>(float)$_POST['runtimevalue']];
-    }
-    if ($_POST['votesvalue'] != ''){
-        $filter['Votes'] = [$comp_ops[$_POST['votescomp']]=>(float)$_POST['votesvalue']];
-    }
-    if ($_POST['revenuevalue'] != ''){
-        $filter['Revenue_in_Millions'] = [$comp_ops[$_POST['revenuecomp']]=>(float)$_POST['revenuevalue']];
-    }
-    if ($_POST['metascorevalue'] != ''){
-        $filter['Metascore'] = [$comp_ops[$_POST['metascorecomp']]=>(float)$_POST['metascorevalue']];
-    }
-    //print_r($filter);
-    //echo gettype($filter);
-} <-->
+<div class="container-fluid border rounded"> 
+<div class="container-fluid border rounded">
+    <div class="row text-center p-5 justify-content-around">
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-   //    print_r($_POST);
 
-
-//Array ( [votescomp] => Greater than [votesvalue] => 8 [revenuecomp] => Not equal to [revenuevalue] => 10 [city] => gh [min_votes] => 1 [max_votes] => 3 [min_rates] => 3 [max_rates] => 5 ) 
 
 $comp_ops = ['Equal to'=>'$eq', 'Not equal to'=>'$ne', 
                 'Greater than'=>'$gt', 'Greater than equal to'=>'$gte', 
@@ -210,28 +159,12 @@ if($_POST["votesvalue"] != ""){
     $filter["votes"] = [$comp_ops[$_POST['votescomp']]=>(int)$_POST['votesvalue']];
 }
 
-if($_POST["ratevalue"] != ""){
-    $filter["rates"] = ['$gte' => (int)$_POST["min_rates"], '$lte' => (int)$_POST["max_rates"]];
-}
-
-if($_POST["city"] != ""){
-    $filter["city"] = $_POST["city"];
-}
-
 if($_POST["min_votes"] != "" && $_POST["max_votes"] != ""){
     $filter["votes"] = ['$gte' => (int)$_POST["min_votes"], '$lte' => (int)$_POST["max_votes"]];
 }
 
-if($_POST["min_rates"] != "" && $_POST["max_rates"] != ""){
-    $filter["rated_by"] = array ('$ne' => []);
-    $filter["rates"] = ['$gte' => (int)$_POST["min_rates"], '$lte' => (int)$_POST["max_rates"]];
-}
 
 $filter["type"] = "contestent";
-
-
-print_r($filter);
-
 
     $dbname = 'Voting_system';
     $c_user = 'sign_up';
@@ -241,13 +174,59 @@ print_r($filter);
     $cursor = $conn->executeQuery("$dbname.$c_user", $query);
     $count = 0;
     foreach($cursor as $c){
-        
+        $flag = 1;
         $rated_by = 0;
             foreach($c->rated_by as $r){
                 $rated_by += 1;
             }
-            echo '<br><br>'.$c->fname;
+        if($rated_by == 0){
+            $avg = 0;
+        }
+        else{
+            $avg = $c->rate_sum / $rated_by;
+        }
 
+        if($_POST["ratevalue"] != ""){    
+            if($_POST["ratecomp"] == "Equal to"){
+                if($avg == $_POST["ratevalue"]){
+                    $flag = 1;
+                }else{$flag = 0;}
+            }
+            if($_POST["ratecomp"] == "Not equal to"){
+                if($avg != $_POST["ratevalue"]){
+                    $flag = 1;
+                }else{$flag = 0;}
+            }
+            if($_POST["ratecomp"] == "Greater than"){
+                if($avg > $_POST["ratevalue"]){
+                    $flag = 1;
+                }else{$flag = 0;}
+            }
+            if($_POST["ratecomp"] == "Greater than equal to"){
+                if($avg >= $_POST["ratevalue"]){
+                    $flag = 1;
+                }else{$flag = 0;}
+            }
+            if($_POST["ratecomp"] == "Less than"){
+                if($avg < $_POST["ratevalue"]){
+                    $flag = 1;
+                }else{$flag = 0;}
+            }
+            if($_POST["ratecomp"] == "Less than equal to"){
+                if($avg <= $_POST["ratevalue"]){
+                    $flag = 1;
+                }else{$flag = 0;}
+            }
+        }
+
+        if($_POST["min_rates"] != ""){
+            if($avg >= $_POST["min_rates"] && $avg <= $_POST["max_rates"]){
+                $flag = 1;
+            }
+            else{$flag = 0;}
+        }
+
+        if($flag  == 1){
         echo'
         <div class="col-sm-4">
             <div class="card shadow-lg">
@@ -256,25 +235,29 @@ print_r($filter);
                     <h5 class="card-title">'.$c->fname.'  '.$c->lname.'</h5>
                                 
                     <p class="card-text">'.$c->about.'</p>
-                    <hr>';
-    if($count1 == 1){
-                    echo'
-                    <a href="vote_to.php?cont='.$c->uname.'" id="vote" class="btn btn-primary">Vote</a>
-                    <a href="contestent_profile.php?uname='.$c->uname.'" class="btn btn-primary">view Profile</a>
-                </div>
-            </div>
-        </div>
-        ';}
-    else{           echo'
+                    <hr>
+                    <div class="row">
+                        <label class="col-6" for="votes">Votes = '.$c->votes.'</label>
+                        <label class="col-3">rating: '.round($avg, 1).' / 10<p>by '.$rated_by.' people</label>';
+        
+                        echo'
+                    </div>
+                    <hr>
                     <a href="contestent_profile.php?uname='.$c->uname.'" class="btn btn-primary">view Profile</a>
                 </div>  
             </div>
-        </div>';}
+        </div>';
+
 
     }
+}
 
 
 }
 ?>
+</div>
+</div>
+</div>
+
 </body>
 </html>

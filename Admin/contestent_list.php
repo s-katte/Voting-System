@@ -33,8 +33,10 @@ if(sizeof($_SESSION) == 0){
 <body>
  <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg justify-content-around navbar-light bg-light">
                 <a href="logout.php" class="btn btn-primary">logout</a>
+                  <a href="option_menu.php" class="btn btn-primary">Back</a>
+
             </nav>
 
 <div class="container-fluid border rounded">
@@ -57,6 +59,16 @@ if(sizeof($_SESSION) == 0){
     $count = 0;
     
     foreach($cursor as $c){
+        $rated_by = 0;
+            foreach($c->rated_by as $r){
+                $rated_by += 1;
+            }
+        if($rated_by == 0){
+            $avg = 0;
+        }
+        else{
+            $avg = $c->rate_sum / $rated_by;
+        }
         if($c->votes == $winner && $winner != 0){
         echo '
         <div class="col-sm-4">
@@ -73,7 +85,10 @@ if(sizeof($_SESSION) == 0){
                     <h5 class="card-title">'.$c->fname.' '.$c->lname.'</h5>
                     <p class="card-text">'.$c->about.'</p>
                     <hr>
-                    <p class="card-text text-danger">Votes: '.$c->votes.'</p><br>
+                    <div class="row">
+                        <p class="card-text text-danger col-6">Votes: '.$c->votes.'</p><br>
+                        <p class="card-text col-3">'.$avg.' / 10</p>
+                    </div>
                     <a href="contestent_profile.php?uname='.$c->uname.'" class="btn btn-primary">View Profile</a>
                 </div>
             </div>
