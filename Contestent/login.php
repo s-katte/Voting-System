@@ -20,47 +20,40 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
     <link href="style.css" rel="stylesheet" type="text/css">	
-<script>
-            $(document).ready(function(){
+    <script>
+        $(document).ready(function(){
+            $("#uname").keyup(function(){
+                var uname = $("#uname").val().trim();
+                console.log(uname)
+                if(uname != ''){
+                    $.ajax({
+                        url: 'log_uname_check.php',
+                        type: 'post',
+                        data: {uname:uname},
+                        success: function(response){
+                            // Show status
+                            console.log("out: ", response);
+                            if(response == 1){
+                                console.log(response);
+                                $("#loginBtn").show();
+                                $("#uname_response1").hide();
+                            }if(response == 0){
+                                console.log(response);
 
-                $("#uname").keyup(function(){
-
-                    var uname = $("#uname").val().trim();
-
-                    if(uname != ''){
-
-                        $("#uname_response1").show();
-
-                        $.ajax({
-                            url: 'log_uname_check.php',
-                            type: 'post',
-                            data: {uname:uname},
-                            success: function(response){
-                                    
-                                // Show status
-console.log(response);
-                                if(response > 0){
-                                    console.log(response);
-                                    $("#uname_response1").className += "row";       
-                                    $("#uname_response1").html("<span class='exists'>Username exists.</span>");
-
-                                }else{
-                                    console.log(response);
-                                    $("#uname_response1").className += "row";       
-                                    $("#uname_response1").html("<span class='not-exists'>Username not exists.</span>");
-
-                                }
-
+                                $("#uname_response1").className = "row response";
+                                $("#uname_response1").html("<span class='not-exists'>* Username dont exist.</span>");
+                                $("#loginBtn").hide();
+                                $("#uname_response1").show();            
                             }
-                        });
-                    }else{
-                        $("#uname_response1").hide();
-                    }
-
-                });
-
+                        }
+                    });
+                }else{
+                    $("#loginBtn").show();
+                    $("#uname_response1").hide();
+                }
             });
-        </script>
+        });
+    </script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,9 +74,9 @@ console.log(response);
     <div id="uname_response1" class="response"></div>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psd" required>
+    <input type="password" class="form-control" placeholder="Enter Password" name="psd" required><br>
         
-    <button type="submit">Login</button>
+    <button class="col-6 btn-lg btn btn-primary " id="loginBtn" name="loginBtn" type="submit">Login</button>
 
 </form>
 </div>

@@ -54,7 +54,7 @@ if(sizeof($_SESSION) == 0){
     $dbname = 'Voting_system';
     $c_user = 'sign_up';
     $conn = new MongoDB\Driver\Manager('mongodb://localhost:27017');
-    $filter = ['by' => $_SESSION['user'], 'added' => 1];
+    $filter = ['by' => $_SESSION['user'], 'added' => 1, 'uname' => $_GET["uname"]];
     $query = new MongoDB\Driver\Query($filter, []);
     $cursor = $conn->executeQuery("$dbname.$c_user", $query);
 
@@ -69,11 +69,12 @@ foreach($cursor as $c){
       <x-star-rating value="0" number="10"></x-star-rating>
         <script src="StarRating.js">console.log(value);</script>
             
-      <hr>
-      <label class="card-text">user1: some comment</label><br>
-      <label class="card-text">user2: some comment</label><br>
-      <label class="card-text">user3: some comment</label><br>
-      
+      <hr>';
+foreach($c->comments as $comment){
+  foreach($comment as $by=>$comm){
+      echo'
+      <label class="card-text">'.$by.': '.$comm.'</label><br>';}}
+      echo'
     </div>
   </div>';
 }

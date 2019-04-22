@@ -14,7 +14,9 @@ $conn = new MongoDB\Driver\Manager("mongodb://localhost:27017");
                     'by' => $_SESSION['user'],
     				'uname' => $uname,
 					'psd'=> password_hash($psd, PASSWORD_DEFAULT),
-					'added' => 0);
+					'added' => 0,
+                    'comments' => [],
+                    'votes' => 0);
 
             
 

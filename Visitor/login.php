@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $dbname = 'Voting_system';
 $c_user = 'sign_up';
 
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             exit();
         }
         
-        else{   
+        else{
         
         
             $hashedpwd = password_verify($psd, $dd->psd);

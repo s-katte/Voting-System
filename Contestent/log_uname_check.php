@@ -7,7 +7,7 @@ $c_user = 'sign_up';
 
 $uname = $_POST['uname'];
 
-        $filter = ['uname' => "$uname" , type => "contestent"];
+        $filter = ['uname' => "$uname" , 'type' => "contestent"];
         $options = [];
         
         $query = new MongoDB\Driver\Query($filter, $options);

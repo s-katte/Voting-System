@@ -27,40 +27,36 @@ if(sizeof($_SESSION) == 0){
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
     <link href="style.css" rel="stylesheet" type="text/css">
-        <script>
-            $(document).ready(function(){
-
-                $("#txt_uname").keyup(function(){
-
-                    var uname = $("#txt_uname").val().trim();
-
-                    if(uname != ''){
-
-                        $("#uname_response").show();
-
-                        $.ajax({
-                            url: 'uname_check.php',
-                            type: 'post',
-                            data: {uname:uname},
-                            success: function(response){
-                                console.log(response);
-                                // Show status
-                                if(response > 0){
-                                    $("#uname_response").className += "row";
-                                    $("#uname_response").html("<span class='not-exists'>* Username Already in use.</span>");
-
-                                }
-
+    <script>
+        $(document).ready(function(){
+            $("#txt_uname").keyup(function(){
+                var uname = $("#txt_uname").val().trim();
+                if(uname != ''){
+                    $.ajax({
+                        url: 'uname_check.php',
+                        type: 'post',
+                        data: {uname:uname},
+                        success: function(response){
+                            console.log(response);
+                            // Show status
+                            if(response > 0){
+                                $("#uname_response").show();
+                                $("#uname_response").className = "row response";
+                                $("#uname_response").html("<span class='not-exists'>* Username Already in use.</span>");
+                                $("#addBtn").hide();
+                            }else{
+                                $("#addBtn").show();
+                                $("#uname_response").hide();            
                             }
-                        });
-                    }else{
-                        $("#uname_response").hide();
-                    }
-
-                });
-
+                        }
+                    });
+                }else{
+                    $("#addBtn").show();
+                    $("#uname_response").hide();
+                }
             });
-        </script>
+        });
+    </script>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a href="logout.php" class="btn btn-primary">logout</a>
 </nav>
@@ -153,12 +149,15 @@ span.psw {
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psd" required>
         
-    <button type="submit">Add</button>
+    <button type="submit" id="addBtn" name="addBtn">Add</button>
 
   </div>  
 </form>
 </div>
 
+<div class="justify-content-around">
+  <a href="option_menu.php" class="col-3 btn-lg btn btn-primary justify-content-center">Back To Main Menu</a>
+</div>
 
 </body>
 </html>

@@ -1,3 +1,12 @@
+    <?php  
+session_start();
+
+if(sizeof($_SESSION) == 0){
+   header('Location: index.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,94 +31,63 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    
+
 </head>
 <body>
  <div id="content">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a href="#" class="btn btn-primary">logout</a>
+                <a href="logout.php" class="btn btn-primary">logout</a>
             </nav>
 
 <div class="container-fluid border rounded"> 
 <div class="container-fluid border rounded">
-                <div class="row text-center p-5 justify-content-around">
-                    <div class="col-sm-4">
-                        <div class="card shadow-lg">
-                            <img class="card-img-top img-fluid" src="../Images/profile.jpeg" style="width: 100em; height: 20em;">
-                            <div class="card-body">
-                                <h5 class="card-title">Contestent #1</h5>
+    <div class="row text-center p-5 justify-content-around">
+    <?php 
+
+    $dbname = 'Voting_system';
+    $c_user = 'sign_up';
+    $conn = new MongoDB\Driver\Manager('mongodb://localhost:27017');
+
+       $filter1 = ['uname' => $_SESSION['user'], 'voted' => 0];
+    $query1 = new MongoDB\Driver\Query($filter1, []);
+    $cursor1 = $conn->executeQuery("$dbname.$c_user", $query1);
+    $count1 = 0;
+    foreach($cursor1 as $c){ $count1 += 1; }
+
+    $filter = ['added' => 1];
+    $query = new MongoDB\Driver\Query($filter, []);
+    $cursor = $conn->executeQuery("$dbname.$c_user", $query);
+    $count = 0;
+    foreach($cursor as $c){
+        echo'
+        <div class="col-sm-4">
+            <div class="card shadow-lg">
+                <img class="card-img-top img-fluid" src="../Images/profile.jpeg" style="width: 100em; height: 20em;">
+                <div class="card-body">
+                    <h5 class="card-title">'.$c->fname.'  '.$c->lname.'</h5>
                                 
-                                <p class="card-text">Description about contestent</p>
-                                <hr>
-                                <a href="#" class="btn btn-primary">Vote</a>
-                                <a href="contestent_profile.html" class="btn btn-primary">view Profile</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card shadow-lg">
-                            <img class="card-img-top img-fluid" src="../Images/profile.jpeg" style="width: 100em; height: 20em;">
-                            <div class="card-body">
-                                <h5 class="card-title">Contestent #2</h5>
-                                <p class="card-text">Description about contestent</p>
-                                <hr>
-                                <a href="#" class="btn btn-primary">Vote</a>
-                                <a href="contestent_profile.html" class="btn btn-primary">view Profile</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card shadow-lg">
-                            <img class="card-img-top img-fluid" src="../Images/profile.jpeg" style="width: 100em; height: 20em;">
-                            <div class="card-body">
-                                <h5 class="card-title">Contestent #3</h5>
-                                <p class="card-text">Description about contestent</p>
-                                <hr>
-                                <a href="#" class="btn btn-primary">Vote</a>
-                                <a href="contestent_profile.html" class="btn btn-primary">view Profile</a>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="card-text">'.$c->about.'</p>
+                    <hr>';
+    if($count1 == 1){
+                    echo'
+                    <a href="vote_to.php?cont='.$c->uname.'" id="vote" class="btn btn-primary">Vote</a>
+                    <a href="contestent_profile.php?uname='.$c->uname.'" class="btn btn-primary">view Profile</a>
                 </div>
-            
-                <div class="row text-center p-5 justify-content-around">
-                    <div class="col-sm-4">
-                        <div class="card shadow-lg">
-                            <img class="card-img-top img-fluid" src="../Images/profile.jpeg" style="width: 100em; height: 20em;">
-                            <div class="card-body">
-                                <h5 class="card-title">Contestent #4</h5>
-                                <p class="card-text">Description about contestent</p>
-                                <hr>
-                                <a href="" class="btn btn-primary">Vote</a>
-                                <a href="contestent_profile.html" class="btn btn-primary">view Profile</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card shadow-lg">
-                            <img class="card-img-top img-fluid" src="../Images/profile.jpeg" style="width: 100em; height: 20em;">
-                            <div class="card-body">
-                                <h5 class="card-title">Contestent #5</h5>
-                                <p class="card-text">Description about contestent</p>
-                                <hr>
-                                <a href="#" class="btn btn-primary">Vote</a>
-                                <a href="contestent_profile.html" class="btn btn-primary">view Profile</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card shadow-lg">
-                            <img class="card-img-top img-fluid" src="../Images/profile.jpeg" style="width: 100em; height: 20em;">
-                            <div class="card-body">
-                                <h5 class="card-title">Contestent #6</h5>
-                                <p class="card-text">Description about contestent</p>
-                                <hr>
-                                <a href="#" class="btn btn-primary">Vote</a>
-                                <a href="contestent_profile.html" class="btn btn-primary">view Profile</a>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
             </div>
+        </div>
+        ';}
+    else{           echo'
+                    <a href="contestent_profile.php?uname='.$c->uname.'" class="btn btn-primary">view Profile</a>
+                </div>  
+            </div>
+        </div>';}
+
+    }
+
+?>
+    </div> 
+</div>
 </body>
 </html>  

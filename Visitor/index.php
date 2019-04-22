@@ -19,80 +19,71 @@
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
         <script>
-            $(document).ready(function(){
+        $(document).ready(function(){
+            $("#txt_uname").keyup(function(){
+                var uname = $("#txt_uname").val().trim();
+                if(uname != ''){
+                    $.ajax({
+                        url: 'ad_uname_check.php',
+                        type: 'post',
+                        data: {uname:uname},
+                        success: function(response){
+                            // Show status
+                            if(response > 0){
+                                $("#uname_response").show();
+                                $("#uname_response").className = "row response";
+                                $("#uname_response").html("<span class='not-exists'>* Username Already in use.</span>");
+                                $("#signup_btn").hide();
+                            }else{
+                                $("#signup_btn").show();
 
-                $("#txt_uname").keyup(function(){
-
-                    var uname = $("#txt_uname").val().trim();
-
-                    if(uname != ''){
-
-                        $("#uname_response").show();
-
-                        $.ajax({
-                            url: 'uname_check.php',
-                            type: 'post',
-                            data: {uname:uname},
-                            success: function(response){
-                                
-                                // Show status
-                                if(response > 0){
-                                    $("#uname_response").className += "row";
-                                    $("#uname_response").html("<span class='not-exists'>* Username Already in use.</span>");
-
-                                }else{
-                                  $("#uname_response").className += "row";
-                                    $("#uname_response").html("<span class='exists'>Available.</span>");
-                                }
-
+                                $("#uname_response").hide();            
                             }
-                        });
-                    }else{
-                        $("#uname_response").hide();
-                    }
-
-                });
-
+                        }
+                    });
+                }else{
+                    $("#signup_btn").show();
+                    $("#uname_response").hide();
+                }
             });
-        </script>
-        <script>
-            $(document).ready(function(){
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#uname").keyup(function(){
+                var uname = $("#uname").val().trim();
+                console.log(uname)
+                if(uname != ''){
+                    $.ajax({
+                        url: 'uname_check.php',
+                        type: 'post',
+                        data: {uname:uname},
+                        success: function(response){
+                            // Show status
+                            console.log("out: ", response);
+                            if(response == 1){
+                                console.log(response);
+                                $("#loginBtn").show();
+                                $("#uname_response1").hide();
+                            }if(response == 0){
+                                console.log(response);
 
-                $("#uname").keyup(function(){
-
-                    var uname = $("#uname").val().trim();
-
-                    if(uname != ''){
-
-                        $("#uname_response1").show();
-
-                        $.ajax({
-                            url: 'log_uname_check.php',
-                            type: 'post',
-                            data: {uname:uname},
-                            success: function(response){
-                                console.log(response);    
-                                // Show status
-                                if(response > 0){
-                                  $("#uname_response1").className += "row";
-                                    $("#uname_response1").html("<span class='not-exists'></span>");
-
-                                }else{
-                                  $("#uname_response1").className += "row";
-                                    $("#uname_response1").html("<span class='exists'>User not registered.</span>");
-                                }
-
+                                $("#uname_response1").className = "row response";
+                                $("#uname_response1").html("<span class='not-exists'>* Username dont exist.</span>");
+                                $("#loginBtn").hide();
+                                $("#uname_response1").show();            
                             }
-                        });
-                    }else{
-                        $("#uname_response1").hide();
-                    }
-
-                });
-
+                        }
+                    });
+                }else{
+                    $("#loginBtn").show();
+                    $("#uname_response1").hide();
+                }
             });
-        </script>
+        });
+    </script>
 
 <?php
 echo <<<HTML
@@ -185,7 +176,7 @@ span.psw {
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psd" required>
         
-    <button type="submit">Login</button>
+    <button id="loginBtn" name="loginBtn" type="submit">Login</button>
 
 </form>
 </div>
@@ -217,12 +208,14 @@ span.psw {
     <label for="psw-repeat"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" name="cpsd" required>
 
-      <button type="submit" class="signupbtn">Sign Up</button>
+      <button type="submit" id="signup_btn" name="signup_btn" class="signupbtn">Sign Up</button>
     </div>
   </div>
 </form>
 </div>
-
+<div class="justify-content-around">
+  <a href="../" class="col-3 btn-lg btn btn-primary justify-content-center">Back To Main Menu</a>
+</div>
 </body>
 </html>
 

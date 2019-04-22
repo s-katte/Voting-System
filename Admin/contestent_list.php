@@ -48,19 +48,33 @@ if(sizeof($_SESSION) == 0){
     $filter = ['by' => $_SESSION['user'], 'added' => 1];
     $query = new MongoDB\Driver\Query($filter, []);
     $cursor = $conn->executeQuery("$dbname.$c_user", $query);
+    $cursor1 = $conn->executeQuery("$dbname.$c_user", $query);
+    $winner = 0;
+    foreach($cursor1 as $c){
+        if($winner < $c->votes){$winner = $c->votes;}
+    }
+
     $count = 0;
+    
     foreach($cursor as $c){
-        
+        if($c->votes == $winner && $winner != 0){
         echo '
         <div class="col-sm-4">
-            <div class="card shadow-lg">
+        <div class="card shadow-lg bg-success">';
+    }
+        else{
+            echo '
+        <div class="col-sm-4">
+        <div class="card shadow-lg">';
+        }
+        echo'
                 <img class="card-img-top img-fluid" src="../Images/profile.jpeg" style="width: 100em; height: 20em;">
                 <div class="card-body">
                     <h5 class="card-title">'.$c->fname.' '.$c->lname.'</h5>
                     <p class="card-text">'.$c->about.'</p>
                     <hr>
-                    <p class="card-text text-danger">___no of votes</p><br>
-                    <a href="contestent_profile.php" class="btn btn-primary">View Profile</a>
+                    <p class="card-text text-danger">Votes: '.$c->votes.'</p><br>
+                    <a href="contestent_profile.php?uname='.$c->uname.'" class="btn btn-primary">View Profile</a>
                 </div>
             </div>
         </div>';

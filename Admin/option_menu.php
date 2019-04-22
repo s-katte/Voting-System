@@ -43,6 +43,7 @@ if(sizeof($_SESSION) == 0){echo "true";
   <a href="add_contestent.php" class="col-6 btn-lg btn btn-primary ">Add a contestent.</a></br></br></br>
     
   <a href="contestent_list.php" class="col-6 btn-lg btn btn-primary ">see details of contestents </a></br></br></br>
+    <a href="Analysis.php" class="col-6 btn-lg btn btn-primary ">Analyse Reports</a></br></br></br>
 </div>
 
 </div>

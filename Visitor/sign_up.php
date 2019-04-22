@@ -48,7 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 'uname' => $uname,
                 'email' => $email,
                 'psd' => $hashed_psd,
-                'cpsd' => $hashed_cpsd
+                'cpsd' => $hashed_cpsd,
+                'voted' => 0
             );
 
             $single_insert = new MongoDB\Driver\BulkWrite();
